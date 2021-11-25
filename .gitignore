@@ -50,3 +50,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Idea
+*.idea/
+
+#VSCode
+.vscode
+
+#mac
+.DS_Store
+
