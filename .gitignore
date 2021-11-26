@@ -51,12 +51,18 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-#Idea
+# Idea
 *.idea/
 
-#VSCode
+# VSCode
 .vscode
 
 #mac
 .DS_Store
 
+# Others
+*.output
+*.tab.c
+*.tab.h
+*.yy.c
+*.yy.h

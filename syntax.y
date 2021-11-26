@@ -5,10 +5,10 @@ int yylex();
 %}
 
 %token CODIGO
-%token FIN_LINEA;
-%token IMPRIMIR;
+%token FIN_LINEA
+%token IMPRIMIR
 
-%start S;
+%start S
 
 %%
 
