@@ -1,4 +1,6 @@
 %{
+#include "linkedList.h"
+
 void yyerror(const char *s);
 int i = 0;
 int yylex();

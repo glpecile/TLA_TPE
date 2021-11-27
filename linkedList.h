@@ -1,6 +1,8 @@
 
 #include <stdbool.h>
-
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 enum type {entero = 0, text = 1};
 
