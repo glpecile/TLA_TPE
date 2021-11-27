@@ -21,7 +21,7 @@ end: {
 };
 
 code: | instrucciones ;
-instrucciones: instruccion FIN_LINEA;
+instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
 
 instruccion: print{};
 
