@@ -29,3 +29,18 @@ La limpieza de los archivos generados se realiza con el siguiente comando:
 ```bash
 make clean
 ```
+## Ejecutable
+
+Para generar el archivo ejecutable es necesario contar con un archivo *.ar y proceder con el siguiente comando:
+
+```bash
+./programAR.sh <arhivo.ar> <nombre del ejecutable>
+```
+
+## Ejecucion
+
+Por ultimo, para ejecutar el archivo creado anteriormente, basta con:
+
+```bash
+./<nombre del ejecutable>
+```
