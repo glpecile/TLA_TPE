@@ -1,6 +1,8 @@
 # TPE TLA - Program**AR**
 Trabajo Practico Especial de la materia 72.39 - Autómatas, Teoría de Lenguajes y Compiladores - Segundo Cuatrimestre 2021
 
+![Logo_pill](resources/images/ProgramAR%20Logo%20Pill.png)
+
 ## Autores
 
 - [Julián Arce](https://github.com/juarce)
@@ -22,16 +24,9 @@ La compilación se realiza con el siguiente comando:
 make
 ```
 
-## Limpieza
-
-La limpieza de los archivos generados se realiza con el siguiente comando:
-
-```bash
-make clean
-```
 ## Ejecutable
 
-Para generar el archivo ejecutable es necesario contar con un archivo *.ar y proceder con el siguiente comando:
+Para generar el archivo ejecutable es necesario contar con un archivo `*.ar` y proceder con el siguiente comando:
 
 ```bash
 ./programAR.sh <arhivo.ar> <nombre del ejecutable>
@@ -43,4 +38,12 @@ Por ultimo, para ejecutar el archivo creado anteriormente, basta con:
 
 ```bash
 ./<nombre del ejecutable>
+```
+
+## Limpieza
+
+La limpieza de los archivos generados se realiza con el siguiente comando:
+
+```bash
+make clean
 ```
