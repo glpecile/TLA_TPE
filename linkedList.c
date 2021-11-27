@@ -79,5 +79,5 @@ void freeList(list *l){
       free(aux);
       aux=next;
    }
-//    free(l);
+   free(l);
 }
