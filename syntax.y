@@ -4,6 +4,7 @@
 void yyerror(const char *s);
 int i = 0;
 int yylex();
+list *l;
 %}
 
 %union{
@@ -44,9 +45,9 @@ int yylex();
 %token MIENTRAS
 %token LEER
 %token IMPRIMIR
-%token <oracion> TEXTO
+%token <texto> TEXTO
 %token <numero> NUMERO
-%token <oracion> NOMBRE
+%token <texto> NOMBRE
 %token CODIGO
 
 %left '+' '-'
@@ -64,15 +65,35 @@ end: {
     printf("\n}");
 };
 
-expresion:
-    expresion'+'expresion {$$=$1+$3;}
-    |expresion'-'expresion {$$=$1-$3;}
-    |expresion'*'expresion {$$=$1*$3;}
-    |expresion'/'expresion {$$=$1/$3;}
-    |expresion'%'expresion {$$=$1%$3;}
-    |'('expresion')' {$$=$2;}
-    | numero {$$=$1;}
-    | nombre_st
+nombre_st: NOMBRE {
+    struct node* aux;
+    if((aux=find(l,$1)) == NULL){
+        yyerror("La variable que se intento asignar no existe");
+        fprintf(stderr, "La variable que se intento asignar no existe");
+        YYABORT;
+    }else{
+        printf("%s", $1);
+    }
+};
+
+operacion: valor operador valor{};
+
+parentesis_st_abre: PARENTESIS_ABRE{printf(" ( ");};
+parentesis_st_cierra: PARENTESIS_CIERRA{printf(" ) ");};
+
+operador: MAS{printf(" + ");}
+        |MENOS{printf(" - ");}
+        |POR{printf(" * ");}
+        |DIVIDIDO{printf(" / ");}
+        |MOD{printf(" %% ");};
+
+        valor: 
+    nombre_st
+    | NUMERO {
+        printf("%d", $1);
+        };
+    | parentesis_st_abre operacion parentesis_st_cierra
+    | ;
 
 code: | instrucciones ;
 instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
@@ -82,5 +103,7 @@ instruccion: print{};
 print : IMPRIMIR {printf("printf(%s\n);", "\"imprime esto\"");}
 %%
 int main(void){
+    l = createList();
     yyparse();
+    freeList(l);
 }
