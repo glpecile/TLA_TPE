@@ -49,6 +49,9 @@ int yylex();
 %token <oracion> NOMBRE
 %token CODIGO
 
+%left '+' '-'
+%left '*' '/' '%'
+%left '(' ')'
 %start S
 
 %%
@@ -60,6 +63,16 @@ begin: CODIGO{
 end: {
     printf("\n}");
 };
+
+expresion:
+    expresion'+'expresion {$$=$1+$3;}
+    |expresion'-'expresion {$$=$1-$3;}
+    |expresion'*'expresion {$$=$1*$3;}
+    |expresion'/'expresion {$$=$1/$3;}
+    |expresion'%'expresion {$$=$1%$3;}
+    |'('expresion')' {$$=$2;}
+    | numero {$$=$1;}
+    | nombre_st
 
 code: | instrucciones ;
 instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
