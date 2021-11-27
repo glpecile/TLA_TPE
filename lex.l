@@ -1,5 +1,6 @@
 %{
     #include "y.tab.h"
+    #include <string.h>
 %}
 FIN_LINEA               ";"
 VAR_NUMERO              "numero "
@@ -38,7 +39,6 @@ TEXTO                   ["][^\n\r]*["]
 NUMERO                  [-]?[0-9]+
 NOMBRE                  [a-z|A-Z|0-9|_]+
 CODIGO                  "codigo:"
-# TODO secciones del codigo
 
 %%
 [\t] ECHO;
