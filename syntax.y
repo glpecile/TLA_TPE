@@ -49,7 +49,6 @@ list *l;
 %token <numero> NUMERO
 %token <texto> NOMBRE
 %token CODIGO
-%token TERMINAR
 
 %start S
 
@@ -61,7 +60,7 @@ inicio: CODIGO{
     printf("#include \"linkedList.h\" \nint main(){");
 };
 
-final: TERMINAR{ printf("\n}"); };
+final:{ printf("\n}"); };
 
 declaraciones: s_declaraciones | s_declaraciones declaraciones ;
 

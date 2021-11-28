@@ -39,7 +39,6 @@ TEXTO                   ["][^\n\r]*["]
 NUMERO                  [-]?[0-9]+
 NOMBRE                  [a-z|A-Z|0-9|_]+
 CODIGO                  "codigo:"
-TERMINAR                "terminar"
 
 %%
 [\t] ECHO;
@@ -82,7 +81,6 @@ TERMINAR                "terminar"
 {NUMERO}                {yylval.numero = atoi(yytext); return NUMERO;}
 {NOMBRE}                {strcpy(yylval.texto, yytext); return NOMBRE;}
 {CODIGO}                return CODIGO;
-{TERMINAR}              return TERMINAR;
 
 .   ECHO;
 
