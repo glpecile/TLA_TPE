@@ -60,21 +60,20 @@ inicio: CODIGO{
     printf("#include \"linkedList.h\" \nint main(){");
 };
 
-final:{ printf("\n}"); };
+final:{
+    printf("\n}");
+};
 
-declaraciones: s_declaraciones | s_declaraciones declaraciones ;
+declaraciones: decl FIN_LINEA | decl FIN_LINEA declaraciones ;
 
-s_declaraciones: s_declaracion FIN_LINEA;
+decl: declaracion {} | asignacion {} | declaracion_y_asignacion {} ;
 
-rutina: s_rutina | s_rutina rutina ;
+rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina;
 
-s_rutina: instruccion FIN_LINEA;
-
-instruccion: asignacion{} FIN_LINEA | control_logico ;
+instruccion: asignacion{} | control_logico;
 
 impresiones: print{} | print{} impresiones ;
 
-s_declaracion: declaracion{} | asignacion{} | declaracion_y_asignacion{} ;
 
 declaracion: declaracion_nombre_string{
     printf(";");
