@@ -215,7 +215,7 @@ print : imprimir_pabr TEXTO PARENTESIS_CIERRA {printf("printf(%s);", $2);}
 
 imprimir_pabr: IMPRIMIR PARENTESIS_ABRE;
 
-read: LEER PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA{
+read: LEER PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA FIN_LINEA{
      struct node * aux;
      if((aux=find(l, $3)) == NULL){
         yyerror("La variable que se intento asignar no existe\n");
