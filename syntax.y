@@ -122,7 +122,19 @@ valor:
     | parentesis_st_abre operacion parentesis_st_cierra
     | ;
 
+
+super_hacer: hacer_st instrucciones fin_hacer mientras_st sentencia_booleana fin_mientras;
+
+hacer_st: HACER {printf("do{");};
+
+fin_hacer: LLAVE_CIERRA {printf("}");};
+
+mientras_st: MIENTRAS {printf("while(");};
+
+fin_mientras: FIN_LINEA {printf(");\n");};
+
 code: | instrucciones ;
+
 instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
 
 instruccion: print{};
