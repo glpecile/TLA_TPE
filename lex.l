@@ -5,7 +5,7 @@
 FIN_LINEA               ";"
 VAR_NUMERO              "numero "
 VAR_CHAR                "letra "
-VAR_STRING              "oracion "
+VAR_STRING              "texto "
 CONST                   "no cambia "
 MAS                     "+"
 MENOS                   "-"

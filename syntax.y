@@ -65,6 +65,39 @@ end: {
     printf("\n}");
 };
 
+code: | instrucciones ;
+
+instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
+
+instruccion: declaracion {} | asignacion {} | declaracion_y_asignacion {} | print {};
+
+declaracion: declaracion_nombre_string{
+    printf(";");
+};
+declaracion_nombre_string: VAR_NUMERO NOMBRE{
+    struct list* aux;
+    if(find(l,$2)!=NULL){
+                yyerror("Variable ya definida");
+                fprintf(stderr, "La variable ya se definio previamente");
+                YYABORT;
+            }
+            else {
+                insert(l,$2, entero);
+                printf("int %s ", $2);
+            }
+}| VAR_STRING NOMBRE{
+     if(find(l,$2)!=NULL){
+             yyerror("Variable ya definida");
+             fprintf(stderr, "La variable ya se definio previamente");
+             YYABORT;
+         }
+         else {
+             insert(l,$2, text);
+             //printf("char %s[%d + 1] ", $2, MAX_LENGTH);
+             printf("char * %s", $2);
+         }
+ };
+
 nombre_st: NOMBRE {
     struct node* aux;
     if((aux=find(l,$1)) == NULL){
@@ -118,14 +151,20 @@ valor:
     nombre_st
     | NUMERO {
         printf("%d", $1);
-        };
+        }
     | parentesis_st_abre operacion parentesis_st_cierra
     | ;
 
-code: | instrucciones ;
-instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
+asignacion: nombre_st asignacion_numero | nombre_st asignacion_texto;
 
-instruccion: print{};
+asignacion_numero: asignacion_st valor{printf(";");};
+
+asignacion_texto: asignacion_st texto_st{printf(";");};
+
+asignacion_st: ASIGNACION {printf("=");};
+texto_st: TEXTO {printf("%s", $1);};
+
+declaracion_y_asignacion: declaracion_nombre_string asignacion_texto |declaracion_nombre_string asignacion_numero;
 
 print : IMPRIMIR {printf("printf(%s\n);", "\"imprime esto\"");}
 %%
