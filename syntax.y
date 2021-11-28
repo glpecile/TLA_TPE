@@ -193,7 +193,23 @@ texto_st: TEXTO {printf("%s", $1);};
 
 declaracion_y_asignacion: declaracion_nombre_string asignacion_texto |declaracion_nombre_string asignacion_numero;
 
-print : IMPRIMIR {printf("printf(%s\n);", "\"imprime esto\"");}
+print : IMPRIMIR PARENTESIS_ABRE TEXTO PARENTESIS_CIERRA {printf("printf(%s);", $3);}
+            | IMPRIMIR PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA{
+            struct node *aux;
+            if((aux=find(l,$3)) != NULL){
+                if(aux->type == entero){
+                    printf("printf(\"%%d\", %s);", aux->key);
+                }
+                if(aux->type == text){
+                    printf("printf(\"%%s\", %s);", aux->key);
+                }
+            } else {
+                yyerror("La variable que se intento imprimir no existe");
+                fprintf(stderr, "La variable que se intento imprimir no existe");
+                YYABORT;
+            }
+};
+
 %%
 int main(void){
     l = createList();

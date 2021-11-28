@@ -1,3 +1,6 @@
 codigo:
 numero num vale 1;
-imprimir;
+imprimir("hola\n");
+imprimir(num);
+imprimir("\n");
+imprimir("\tchau\n");
