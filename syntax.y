@@ -50,26 +50,31 @@ list *l;
 %token <texto> NOMBRE
 %token CODIGO
 
-%left '+' '-'
-%left '*' '/' '%'
-%left '(' ')'
 %start S
 
 %%
 
-S: begin code end;
-begin: CODIGO{
+S: inicio declaraciones rutina impresiones final;
+inicio: CODIGO{
     printf("#include \"linkedList.h\" \nint main(){");
 };
-end: {
+final: {
     printf("\n}");
 };
 
-code: | instrucciones ;
+declaraciones: s_declaraciones | s_declaraciones declaraciones | ;
 
-instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
+s_declaraciones: s_declaracion FIN_LINEA;
 
-instruccion: declaracion {} | asignacion {} | declaracion_y_asignacion {} | print {};
+rutina: s_rutina | s_rutina rutina | ;
+
+s_rutina: instruccion FIN_LINEA;
+
+instruccion: asignacion FIN_LINEA | control_logico ;
+
+impresiones: print | print impresiones | ;
+
+s_declaracion: declaracion {} | asignacion {} | declaracion_y_asignacion {} ;
 
 declaracion: declaracion_nombre_string{
     printf(";");
@@ -177,8 +182,6 @@ fin_hacer: LLAVE_CIERRA {printf("}");};
 mientras_st: MIENTRAS {printf("while(");};
 
 fin_mientras: FIN_LINEA {printf(");\n");};
-
-code: | instrucciones ;
 
 instrucciones: instruccion FIN_LINEA | instruccion FIN_LINEA instrucciones;
 
