@@ -1,5 +1,6 @@
 codigo:
 numero num vale 1;
+num vale 2;
 imprimir("hola\n");
 imprimir(num);
 imprimir("\n");

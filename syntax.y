@@ -68,12 +68,13 @@ declaraciones: decl FIN_LINEA | decl FIN_LINEA declaraciones ;
 
 decl: declaracion {} | declaracion_y_asignacion {} ;
 
-rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina;
+rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina | control_logico | control_logico rutina;
 
-instruccion: asignacion{} | control_logico;
+instruccion: asignacion {};
 
-impresiones: print{} | print{} impresiones ;
+impresiones: impr FIN_LINEA | impr FIN_LINEA impresiones ;
 
+impr: print {};
 
 declaracion: declaracion_nombre_string{
     printf(";");
@@ -134,7 +135,7 @@ operacion: valor operador valor{};
 parentesis_st_abre: PARENTESIS_ABRE{printf(" ( ");};
 parentesis_st_cierra: PARENTESIS_CIERRA{printf(" ) ");};
 
-boolean: FALSO {printf("1");} | VERDADERO {printf("0");};
+boolean: VERDADERO {printf("1");} | FALSO {printf("0");};
 
 sentencia_comparativa: valor comparador valor;
 
@@ -188,6 +189,7 @@ asignacion_numero: asignacion_st valor{printf(";");};
 asignacion_texto: asignacion_st texto_st{printf(";");};
 
 asignacion_st: ASIGNACION {printf("=");};
+
 texto_st: TEXTO {printf("%s", $1);};
 
 declaracion_y_asignacion: declaracion_nombre_string asignacion_texto |declaracion_nombre_string asignacion_numero;
