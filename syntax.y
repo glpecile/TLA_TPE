@@ -76,10 +76,37 @@ nombre_st: NOMBRE {
     }
 };
 
+sentencia_booleana: boolean
+        |boolean sentencia_logica boolean
+        |parentesis_st_abre sentencia_booleana parentesis_st_cierra sentencia_logica sentencia_booleana
+        |boolean sentencia_logica parentesis_st_abre sentencia_booleana parentesis_st_cierra
+        |sentencia_not parentesis_st_abre sentencia_booleana parentesis_st_cierra
+        |sentencia_not boolean
+        |parentesis_st_abre sentencia_booleana parentesis_st_cierra
+        |sentencia_comparativa;
+
+sentencia_not: NO {printf("!");}
+        | NO sentencia_not;
+
+sentencia_logica: Y {printf("&&");}
+        | O {printf("||");};
+
 operacion: valor operador valor{};
 
 parentesis_st_abre: PARENTESIS_ABRE{printf(" ( ");};
 parentesis_st_cierra: PARENTESIS_CIERRA{printf(" ) ");};
+
+boolean: VERDADERO{printf("1");}
+        | FALSO{printf("0");};
+
+sentencia_comparativa: valor comparador valor;
+
+comparador: MENOR {printf("<");}
+        | MAYOR {printf(">");}
+        | MAYOR_IGUAL {printf(">=");}
+        | MENOR_IGUAL {printf("<=");}
+        | IGUAL{printf("==");}
+        | DISTINTO{printf("!=");};
 
 operador: MAS{printf(" + ");}
         |MENOS{printf(" - ");}
@@ -87,7 +114,7 @@ operador: MAS{printf(" + ");}
         |DIVIDIDO{printf(" / ");}
         |MOD{printf(" %% ");};
 
-        valor: 
+valor: 
     nombre_st
     | NUMERO {
         printf("%d", $1);
