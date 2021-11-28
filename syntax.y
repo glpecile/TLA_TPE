@@ -155,6 +155,18 @@ valor:
     | parentesis_st_abre operacion parentesis_st_cierra
     | ;
 
+control_logico: super_si | super_si_sino| super_hacer;
+
+super_si: si_st sentencia_booleana entonces instrucciones fin_si;
+super_si_sino: si_st sentencia_booleana entonces instrucciones si_no_st instrucciones fin_si;
+
+si_st: SI {printf("if(");};
+
+entonces: PARENTESIS_CIERRA {printf(") {");};
+
+fin_si: LLAVE_CIERRA {printf("}");};
+
+si_no_st: SI_NO {printf("} else {");};
 
 super_hacer: hacer_st instrucciones fin_hacer mientras_st sentencia_booleana fin_mientras;
 

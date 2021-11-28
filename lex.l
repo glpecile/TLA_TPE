@@ -29,10 +29,10 @@ PARENTESIS_CIERRA       ")"
 LLAVE_ABRE              "{"
 LLAVE_CIERRA            "}"
 COMILLA                 ["]
-SI                      "si se cumple"
-SI_NO                   "si no"
+SI                      "si se cumple("
+SI_NO                   "} si no {"
 HACER                   "hacer"
-MIENTRAS                "mientras"
+MIENTRAS                "mientras("
 LEER                    "leer"
 IMPRIMIR                "imprimir"
 TEXTO                   ["][^\n\r]*["]
