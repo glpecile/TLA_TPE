@@ -66,7 +66,7 @@ final:{
 
 declaraciones: decl FIN_LINEA | decl FIN_LINEA declaraciones ;
 
-decl: declaracion {} | asignacion {} | declaracion_y_asignacion {} ;
+decl: declaracion {} | declaracion_y_asignacion {} ;
 
 rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina;
 
@@ -156,8 +156,7 @@ valor:
     | NUMERO {
         printf("%d", $1);
         }
-    | parentesis_st_abre operacion parentesis_st_cierra
-    | ;
+    | parentesis_st_abre operacion parentesis_st_cierra;
 
 control_logico: super_si | super_si_sino| super_hacer;
 
