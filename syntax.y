@@ -64,17 +64,22 @@ final:{
     printf("\n}");
 };
 
-declaraciones: decl FIN_LINEA | decl FIN_LINEA declaraciones ;
+declaraciones: | declar;
+
+declar: decl FIN_LINEA | decl FIN_LINEA declar ;
 
 decl: declaracion {} | declaracion_y_asignacion {} ;
 
-rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina | control_logico | control_logico rutina | read;
+rutina: | rutr
+
+rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read;
+
 
 instruccion: asignacion {};
 
-impresiones: impr FIN_LINEA | impr FIN_LINEA impresiones ;
+impresiones: | impr;
 
-impr: print {};
+impr: print FIN_LINEA | print FIN_LINEA impr ;
 
 declaracion: declaracion_nombre_string{
     printf(";");
