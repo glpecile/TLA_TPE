@@ -49,36 +49,38 @@ list *l;
 %token <numero> NUMERO
 %token <texto> NOMBRE
 %token CODIGO
+%token TERMINAR
 
 %start S
 
 %%
 
 S: inicio declaraciones rutina impresiones final;
+
 inicio: CODIGO{
     printf("#include \"linkedList.h\" \nint main(){");
 };
-final: {
-    printf("\n}");
-};
 
-declaraciones: s_declaraciones | s_declaraciones declaraciones | ;
+final: TERMINAR{ printf("\n}"); };
+
+declaraciones: s_declaraciones | s_declaraciones declaraciones ;
 
 s_declaraciones: s_declaracion FIN_LINEA;
 
-rutina: s_rutina | s_rutina rutina | ;
+rutina: s_rutina | s_rutina rutina ;
 
 s_rutina: instruccion FIN_LINEA;
 
-instruccion: asignacion FIN_LINEA | control_logico ;
+instruccion: asignacion{} FIN_LINEA | control_logico ;
 
-impresiones: print | print impresiones | ;
+impresiones: print{} | print{} impresiones ;
 
-s_declaracion: declaracion {} | asignacion {} | declaracion_y_asignacion {} ;
+s_declaracion: declaracion{} | asignacion{} | declaracion_y_asignacion{} ;
 
 declaracion: declaracion_nombre_string{
     printf(";");
 };
+
 declaracion_nombre_string: VAR_NUMERO NOMBRE{
     struct list* aux;
     if(find(l,$2)!=NULL){
@@ -86,7 +88,7 @@ declaracion_nombre_string: VAR_NUMERO NOMBRE{
                 fprintf(stderr, "La variable ya se definio previamente");
                 YYABORT;
             }
-            else {
+            else{
                 insert(l,$2, entero);
                 printf("int %s ", $2);
             }
@@ -96,14 +98,14 @@ declaracion_nombre_string: VAR_NUMERO NOMBRE{
              fprintf(stderr, "La variable ya se definio previamente");
              YYABORT;
          }
-         else {
+         else{
              insert(l,$2, text);
              //printf("char %s[%d + 1] ", $2, MAX_LENGTH);
              printf("char * %s", $2);
          }
  };
 
-nombre_st: NOMBRE {
+nombre_st: NOMBRE{
     struct node* aux;
     if((aux=find(l,$1)) == NULL){
         yyerror("La variable que se intento asignar no existe");
@@ -134,8 +136,7 @@ operacion: valor operador valor{};
 parentesis_st_abre: PARENTESIS_ABRE{printf(" ( ");};
 parentesis_st_cierra: PARENTESIS_CIERRA{printf(" ) ");};
 
-boolean: VERDADERO{printf("1");}
-        | FALSO{printf("0");};
+boolean: FALSO {printf("1");} | VERDADERO {printf("0");};
 
 sentencia_comparativa: valor comparador valor;
 
@@ -194,10 +195,10 @@ texto_st: TEXTO {printf("%s", $1);};
 
 declaracion_y_asignacion: declaracion_nombre_string asignacion_texto |declaracion_nombre_string asignacion_numero;
 
-print : IMPRIMIR PARENTESIS_ABRE TEXTO PARENTESIS_CIERRA {printf("printf(%s);", $3);}
-            | IMPRIMIR PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA{
+print : imprimir_pabr TEXTO PARENTESIS_CIERRA {printf("printf(%s);", $2);}
+            | imprimir_pabr NOMBRE PARENTESIS_CIERRA{
             struct node *aux;
-            if((aux=find(l,$3)) != NULL){
+            if((aux=find(l,$2)) != NULL){
                 if(aux->type == entero){
                     printf("printf(\"%%d\", %s);", aux->key);
                 }
@@ -210,6 +211,8 @@ print : IMPRIMIR PARENTESIS_ABRE TEXTO PARENTESIS_CIERRA {printf("printf(%s);", 
                 YYABORT;
             }
 };
+
+imprimir_pabr: IMPRIMIR PARENTESIS_ABRE;
 
 %%
 int main(void){
