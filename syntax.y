@@ -54,7 +54,7 @@ list *l;
 
 %%
 
-S: inicio declaraciones rutina impresiones final;
+S: inicio declaraciones rutina final;
 
 inicio: CODIGO{
     printf("#include \"linkedList.h\" \nint main(){");
@@ -72,12 +72,9 @@ decl: declaracion {} | declaracion_y_asignacion {} ;
 
 rutina: | rutr
 
-rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read;
-
+rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read | impr;
 
 instruccion: asignacion {};
-
-impresiones: | impr;
 
 impr: print FIN_LINEA | print FIN_LINEA impr ;
 
