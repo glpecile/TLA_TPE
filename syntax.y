@@ -68,7 +68,7 @@ declaraciones: decl FIN_LINEA | decl FIN_LINEA declaraciones ;
 
 decl: declaracion {} | declaracion_y_asignacion {} ;
 
-rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina | control_logico | control_logico rutina;
+rutina: instruccion FIN_LINEA | instruccion FIN_LINEA rutina | control_logico | control_logico rutina | read;
 
 instruccion: asignacion {};
 
@@ -212,6 +212,26 @@ print : imprimir_pabr TEXTO PARENTESIS_CIERRA {printf("printf(%s);", $2);}
 };
 
 imprimir_pabr: IMPRIMIR PARENTESIS_ABRE;
+
+read: LEER PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA{
+     struct node * aux;
+     if((aux=find(l, $3)) == NULL){
+        yyerror("La variable que se intento asignar no existe\n");
+        fprintf(stderr, "La variable que se intento leer no existe\n");
+        YYABORT;
+     } else if (aux->type == text) {
+        printf(" char aux_sc%d[%d];\n", i ,256 + 1);
+        printf("scanf(\"%%s\", aux_sc%d);\n", i);
+        printf("%s  = aux_sc%d;\n", $3,i++);
+     } else if (aux->type == entero) {
+        printf("scanf(\"%%d\", &%s);\n", $3);         
+     } else {
+        yyerror("Error en el tipo de dato de la variable\n");
+        fprintf(stderr, "Error en el tipo de dato de la variable\n");
+        YYABORT;         
+     }
+     
+};
 
 %%
 int main(void){
