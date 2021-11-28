@@ -72,11 +72,11 @@ decl: declaracion {} | declaracion_y_asignacion {} ;
 
 rutina: | rutr
 
-rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read | impr;
+rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read | read rutr | impr | impr rutr;
 
 instruccion: asignacion {};
 
-impr: print FIN_LINEA | print FIN_LINEA impr ;
+impr: print FIN_LINEA ;
 
 declaracion: declaracion_nombre_string{
     printf(";");
