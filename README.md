@@ -24,7 +24,7 @@ La compilación se realiza con el siguiente comando:
 make
 ```
 
-## Ejecutable
+## Ejecutable y archivos
 
 Para generar el archivo ejecutable es necesario contar con un archivo `*.ar` y proceder con el siguiente comando:
 
@@ -32,7 +32,15 @@ Para generar el archivo ejecutable es necesario contar con un archivo `*.ar` y p
 ./programAR.sh <arhivo.ar> <nombre del ejecutable>
 ```
 
-## Ejecucion
+El archivo generado se encontrará en el mismo directorio y tendrá el
+nombre provisto. El flujo de la creación del ejecutable es el siguiente:
+
+![flow_diagram](resources/images/ProgramAR%20Flow%20Diagram.png)
+
+Luego se puede encontrar en el directorio `resources/docs`
+el archivo [`informeProgramAR.pdf`](/resources/docs/informeProgramAR.pdf).
+
+## Ejecución
 
 Por ultimo, para ejecutar el archivo creado anteriormente, basta con:
 
