@@ -6,7 +6,7 @@ all:
 	gcc -o programAR.out lex.yy.c y.tab.c linkedList.c -g -fsanitize=address
 
 clean:
-	rm -f $(filter-out $(linkedList.c), $(*.c)) *.out *.o lex.yy.c y.tab.c y.tab.h y.output test1 test1.c test2 test2.c test3 test3.c test4 test4.c test5 test5.c
+	rm -f $(filter-out $(linkedList.c), $(*.c)) *.out *.o lex.yy.c y.tab.c y.tab.h y.output test1 test1.c test2 test2.c test3 test3.c test4 test4.c test5 test5.c test6 test6.c test7 test7.c
 	
 test:
 	./programAR.out < ./tests/test1.ar > test1.c
@@ -19,7 +19,11 @@ test:
 	gcc -w -fsanitize=address -g test4.c linkedList.c -o test4
 	./programAR.out < ./tests/test5.ar > test5.c
 	gcc -w -fsanitize=address -g test5.c linkedList.c -o test5
+	./programAR.out < ./tests/test5.ar > test6.c
+	gcc -w -fsanitize=address -g test6.c linkedList.c -o test6
+	./programAR.out < ./tests/test7.ar > test7.c
+	gcc -w -fsanitize=address -g test7.c linkedList.c -o test7
 
 clean_test:
-	rm -f test1 test1.c test2 test2.c test3 test3.c test4 test4.c test5 test5.c
+	rm -f test1 test1.c test2 test2.c test3 test3.c test4 test4.c test5 test5.c test6 test6.c test7 test7.c
 
