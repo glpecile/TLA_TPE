@@ -1,0 +1,11 @@
+codigo:
+numero a;
+
+imprimir("Ingrese un numero\n");
+leer(a);
+
+si se cumple(a vale 0){
+    imprimir("El numero es par\n");
+}  si no {
+    imprimir("El numero es impar\n");
+}

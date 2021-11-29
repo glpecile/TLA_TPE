@@ -1,0 +1,17 @@
+codigo:
+numero a;
+numero b;
+numero aux;
+
+imprimir("CALCULADORA DE MCD\n");
+leer(a);
+leer(b);
+
+aux vale a;
+hacer{
+    a vale b;
+    b vale aux;
+    aux vale (a modulo b);
+}mientras(aux vale mas que 0);
+
+imprimir(b);

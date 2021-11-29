@@ -1,0 +1,15 @@
+codigo:
+numero i;
+numero limite;
+
+i vale 0;
+limite vale 100000;
+
+imprimir("BENCHMARK\n");
+
+hacer{
+    imprimir("i vale: ");
+    imprimir(i);
+    imprimir("\n");
+    i vale (i + 1);
+}mientras(i vale menos que limite);
