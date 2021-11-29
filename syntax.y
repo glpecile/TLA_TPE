@@ -164,13 +164,13 @@ control_logico: super_si | super_si_sino| super_hacer;
 super_si: si_st sentencia_booleana entonces rutina fin_si;
 super_si_sino: si_st sentencia_booleana entonces rutina si_no_st rutina fin_si;
 
-si_st: SI {printf("if(");};
+si_st: SI PARENTESIS_ABRE {printf("if(");};
 
 entonces: PARENTESIS_CIERRA LLAVE_ABRE {printf(") {");};
 
 fin_si: LLAVE_CIERRA {printf("}");};
 
-si_no_st: SI_NO {printf("} else {");};
+si_no_st: LLAVE_CIERRA SI_NO LLAVE_ABRE {printf("} else {");};
 
 super_hacer: hacer_st rutina fin_hacer mientras_st sentencia_booleana fin_mientras;
 
@@ -178,7 +178,7 @@ hacer_st: HACER LLAVE_ABRE {printf("do {");};
 
 fin_hacer: LLAVE_CIERRA {printf("}");};
 
-mientras_st: MIENTRAS {printf("while(");};
+mientras_st: MIENTRAS PARENTESIS_ABRE{printf("while(");};
 
 fin_mientras: parentesis_st_cierra FIN_LINEA {printf(";\n");};
 
