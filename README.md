@@ -55,3 +55,16 @@ La limpieza de los archivos generados se realiza con el siguiente comando:
 ```bash
 make clean
 ```
+
+## Testeos
+
+Para generar los archivos de tests necesarios se utiliza, luego de haber compilado con ```make```, el siguiente comando:
+
+```bash
+make test
+```
+La limpieza de los archivos generados se realiza con el siguiente comando:
+
+```bash
+make clean_test
+```
