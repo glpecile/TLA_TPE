@@ -1,2 +1,11 @@
 codigo:
-numero cinco vale 5;
+numero num1;
+numero num2;
+imprimir("inserte dos numeros positivos separados por un enter\n");
+leer(num1);
+leer(num2);
+si se cumple ( (num1 vale mas que 0 ) y num2 vale mas que 0 ) {
+    imprimir("ambos numeros son positivos\n");
+} si no {
+    imprimir("algun numero es negativo :(\n");
+}
