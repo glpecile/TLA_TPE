@@ -46,6 +46,7 @@ list *l;
 %token <texto> TEXTO
 %token <numero> NUMERO
 %token <texto> NOMBRE
+%token <texto> TEXTO_PLANO
 %token CODIGO
 
 %start S
@@ -70,7 +71,7 @@ decl: declaracion {} | declaracion_y_asignacion {} ;
 
 rutina: | rutr
 
-rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read | read rutr | impr | impr rutr;
+rutr: instruccion FIN_LINEA | instruccion FIN_LINEA rutr | control_logico | control_logico rutr | read | read rutr | impr | impr rutr| comentario {} | comentario {} rutr;
 
 instruccion: asignacion {};
 
@@ -232,6 +233,18 @@ read: LEER PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA FIN_LINEA{
      }
      
 };
+
+comentario: TEXTO_PLANO {
+    int len = strlen($1);
+    char* comment = $1;
+    char* aux = calloc(1, (len - 1 )* sizeof(char));
+    for(int i = 1; i < len-1; i++){
+    aux[i-1] = comment[i];
+    }
+    printf("/*%s*/", aux);
+    free(aux);
+};
+
 
 %%
 int main(void){
