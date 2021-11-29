@@ -176,13 +176,13 @@ si_no_st: SI_NO {printf("} else {");};
 
 super_hacer: hacer_st rutina fin_hacer mientras_st sentencia_booleana fin_mientras;
 
-hacer_st: HACER {printf("do{");};
+hacer_st: HACER {printf("do {");};
 
 fin_hacer: LLAVE_CIERRA {printf("}");};
 
 mientras_st: MIENTRAS {printf("while(");};
 
-fin_mientras: FIN_LINEA {printf(");\n");};
+fin_mientras: parentesis_st_cierra FIN_LINEA {printf(";\n");};
 
 asignacion: nombre_st asignacion_numero | nombre_st asignacion_texto;
 
