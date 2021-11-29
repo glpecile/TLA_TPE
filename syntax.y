@@ -142,7 +142,7 @@ nombre_const_st: CONST NOMBRE{
     struct node* aux;
     if((aux=find(lc,$2)) == NULL){
         yyerror("La constante que se intento asignar no existe");
-        fprintf(stderr, "La constante que se intento asignar no existe %s",$2);
+        fprintf(stderr, "La constante que se intento asignar no existe");
         YYABORT;
     }else{
         printf("%s", $2);
