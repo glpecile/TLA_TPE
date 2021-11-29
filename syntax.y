@@ -5,6 +5,7 @@ void yyerror(const char *s);
 int i = 0;
 int yylex();
 list *l;
+list *lc;
 %}
 
 %union{
@@ -15,7 +16,7 @@ list *l;
 %token FIN_LINEA
 %token VAR_NUMERO
 %token VAR_STRING
-%token CONST
+%token <numero> CONST
 %token MAS
 %token MENOS
 %token POR
@@ -53,10 +54,31 @@ list *l;
 
 %%
 
-S: inicio declaraciones rutina final;
+S: define const inicio declaraciones rutina final;
 
-inicio: CODIGO{
-    printf("#include \"linkedList.h\" \nint main(){");
+define: {
+    printf("#include \"linkedList.h\"\n");
+};
+
+const: | const_num;
+
+const_num: declaracion_const | declaracion_const const_num;
+
+declaracion_const: CONST NOMBRE NUMERO{
+    struct list* aux;
+    if(find(lc,$2)!=NULL){
+                yyerror("Constante ya definida");
+                fprintf(stderr, "La constante ya se definio previamente");
+                YYABORT;
+            }
+            else{
+                insert(lc,$2, entero);
+                printf("#define %s %d", $2,$3);
+            }
+}
+
+inicio: CODIGO {
+    printf("\nint main() {");
 };
 
 final:{
@@ -116,6 +138,17 @@ nombre_st: NOMBRE{
     }
 };
 
+nombre_const_st: CONST NOMBRE{
+    struct node* aux;
+    if((aux=find(lc,$2)) == NULL){
+        yyerror("La constante que se intento asignar no existe");
+        fprintf(stderr, "La constante que se intento asignar no existe %s",$2);
+        YYABORT;
+    }else{
+        printf("%s", $2);
+    }
+};
+
 sentencia_booleana: boolean
         |boolean sentencia_logica boolean
         |parentesis_st_abre sentencia_booleana parentesis_st_cierra sentencia_logica sentencia_booleana
@@ -158,7 +191,8 @@ valor:
     | NUMERO {
         printf("%d", $1);
         }
-    | parentesis_st_abre operacion parentesis_st_cierra;
+    | parentesis_st_abre operacion parentesis_st_cierra
+    | nombre_const_st;
 
 control_logico: super_si | super_si_sino| super_hacer;
 
@@ -210,7 +244,20 @@ print : imprimir_pabr TEXTO PARENTESIS_CIERRA {printf("printf(%s);", $2);}
                 fprintf(stderr, "La variable que se intento imprimir no existe");
                 YYABORT;
             }
-};
+}           | imprimir_pabr CONST NOMBRE PARENTESIS_CIERRA {
+            struct node *aux;
+            if((aux=find(lc,$3)) != NULL){
+                if(aux->type == entero){
+                    printf("printf(\"%%d\", %s);", aux->key);
+                }
+                if(aux->type == text){
+                    printf("printf(\"%%s\", %s);", aux->key);
+                }
+            } else {
+                yyerror("La constante que se intento imprimir no existe");
+                fprintf(stderr, "La constante que se intento imprimir no existe");
+                YYABORT;
+            }};
 
 imprimir_pabr: IMPRIMIR PARENTESIS_ABRE;
 
@@ -249,6 +296,8 @@ comentario: COMENTARIO {
 %%
 int main(void){
     l = createList();
+    lc = createList();
     yyparse();
+    freeList(lc);
     freeList(l);
 }
