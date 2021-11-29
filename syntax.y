@@ -57,7 +57,7 @@ list *lc;
 S: define const inicio declaraciones rutina final;
 
 define: {
-    printf("#include \"linkedList.h\"\n");
+    printf("#include \"stdio.h\"\n");
 };
 
 const: | const_num;
