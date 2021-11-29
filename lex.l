@@ -34,7 +34,7 @@ MIENTRAS                "mientras"
 LEER                    "leer"
 IMPRIMIR                "imprimir"
 TEXTO                   ["][^\n\r]*["]
-TEXTO_PLANO             [#][^\n\r]*[#]
+COMENTARIO             [#][^\n\r]*[#]
 NUMERO                  [-]?[0-9]+
 NOMBRE                  [a-z|A-Z|0-9|_]+
 CODIGO                  "codigo:"
@@ -77,7 +77,7 @@ CODIGO                  "codigo:"
 {TEXTO}                 {strcpy(yylval.texto, yytext); return TEXTO;}
 {NUMERO}                {yylval.numero = atoi(yytext); return NUMERO;}
 {NOMBRE}                {strcpy(yylval.texto, yytext); return NOMBRE;}
-{TEXTO_PLANO}           {strcpy(yylval.texto, yytext); return TEXTO_PLANO;}
+{COMENTARIO}           {strcpy(yylval.texto, yytext); return COMENTARIO;}
 {CODIGO}                return CODIGO;
 
 

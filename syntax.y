@@ -46,7 +46,7 @@ list *l;
 %token <texto> TEXTO
 %token <numero> NUMERO
 %token <texto> NOMBRE
-%token <texto> TEXTO_PLANO
+%token <texto> COMENTARIO
 %token CODIGO
 
 %start S
@@ -234,7 +234,7 @@ read: LEER PARENTESIS_ABRE NOMBRE PARENTESIS_CIERRA FIN_LINEA{
      
 };
 
-comentario: TEXTO_PLANO {
+comentario: COMENTARIO {
     int len = strlen($1);
     char* comment = $1;
     char* aux = calloc(1, (len - 1 )* sizeof(char));
