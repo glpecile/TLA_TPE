@@ -3,10 +3,10 @@ numero num;
 numero result vale 1;
 imprimir("hola, ingresa un numero para calcular su factorial\n");
 leer(num);
-hacer{
+hacer {
     result vale (result * num);
     num vale (num - 1);
 }mientras( num vale mas que 0 );
-imprimir("El factorial es:");
+imprimir("El factorial es : ");
 imprimir(result);
 imprimir("\n");
