@@ -1,7 +1,28 @@
 codigo:
-numero num vale 1;
-num vale 2;
-imprimir("hola\n");
-imprimir(num);
+numero num vale 0;
+numero aux vale 0;
+numero final vale 0;
+numero longitud vale 0;
+
+imprimir("Ingrese un numero mayor a 0 y se sumaran sus valores\n");
+leer(num);
+aux vale num;
+hacer{
+    si se cumple (aux vale mas que 0){
+        longitud vale (longitud + 1);
+        final vale (final + (num modulo 10));
+        num vale (num/10);
+    } si no {
+        imprimir("Error de argumentos, ingrese un numero valido\n");
+            num vale 0;
+    }
+    }mientras(num vale mas que 0);
+
+
+si se cumple (aux vale mas que 0){
+imprimir("La suma de los digitos del numero ingresado es de: ");
+imprimir(final);
+imprimir("\nY la longitud del numero original era de: ");
+imprimir(longitud);
 imprimir("\n");
-imprimir("\tchau\n");
+}
