@@ -2,4 +2,8 @@ no cambia num 4
 no cambia num2 5
 codigo:
 numero aux vale no cambia num;
+imprimir("la constante es ");
 imprimir(no cambia num);
+imprimir("\nla variable es ");
+imprimir(aux);
+imprimir("\n");
