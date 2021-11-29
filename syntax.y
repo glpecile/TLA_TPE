@@ -38,7 +38,6 @@ list *l;
 %token PARENTESIS_CIERRA
 %token LLAVE_ABRE
 %token LLAVE_CIERRA
-%token COMILLA
 %token SI
 %token SI_NO
 %token HACER

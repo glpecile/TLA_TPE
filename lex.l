@@ -28,7 +28,6 @@ PARENTESIS_ABRE         "("
 PARENTESIS_CIERRA       ")"
 LLAVE_ABRE              "{"
 LLAVE_CIERRA            "}"
-COMILLA                 ["]
 SI                      "si se cumple("
 SI_NO                   "} si no {"
 HACER                   "hacer"
@@ -70,7 +69,6 @@ CODIGO                  "codigo:"
 {PARENTESIS_CIERRA}     return PARENTESIS_CIERRA;
 {LLAVE_ABRE}            return LLAVE_ABRE;
 {LLAVE_CIERRA}          return LLAVE_CIERRA;
-{COMILLA}               return COMILLA;
 {SI}                    return SI;
 {SI_NO}                 return SI_NO;
 {HACER}                 return HACER;
