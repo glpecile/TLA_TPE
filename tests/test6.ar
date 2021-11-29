@@ -4,7 +4,7 @@ numero a;
 imprimir("Ingrese un numero\n");
 leer(a);
 
-si se cumple(a vale 0){
+si se cumple((a modulo 2) es igual a 0 ){
     imprimir("El numero es par\n");
 }  si no {
     imprimir("El numero es impar\n");
