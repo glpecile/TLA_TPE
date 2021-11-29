@@ -7,11 +7,13 @@ imprimir("CALCULADORA DE MCD\n");
 leer(a);
 leer(b);
 
-aux vale a;
-hacer{
-    a vale b;
-    b vale aux;
-    aux vale (a modulo b);
-}mientras(aux vale mas que 0);
 
-imprimir(b);
+si se cumple ( b vale mas que 0 ) {
+    hacer{
+        aux vale b;
+        b vale (a modulo b);
+        a vale aux;
+    }mientras(b vale mas que 0);
+}
+
+imprimir(a);
