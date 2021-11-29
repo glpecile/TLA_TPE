@@ -31,7 +31,7 @@ LLAVE_CIERRA            "}"
 COMILLA                 ["]
 SI                      "si se cumple("
 SI_NO                   "} si no {"
-HACER                   "hacer{"
+HACER                   "hacer"
 MIENTRAS                "mientras("
 LEER                    "leer"
 IMPRIMIR                "imprimir"
