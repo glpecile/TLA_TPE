@@ -58,7 +58,8 @@ make clean
 
 ## Testeos
 
-Para generar los archivos de tests necesarios se utiliza, luego de haber compilado con ```make```, el siguiente comando:
+En el directorio [`tests`](/tests) se encuentran los ejemplos de uso con su funcionalidad esperada detallada en el informe. 
+Para generar los archivos de tests necesarios se utiliza -luego de haber compilado con ```make```- el siguiente comando:
 
 ```bash
 make test
