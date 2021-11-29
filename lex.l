@@ -4,7 +4,6 @@
 %}
 FIN_LINEA               ";"
 VAR_NUMERO              "numero "
-VAR_CHAR                "letra "
 VAR_STRING              "texto "
 CONST                   "no cambia "
 MAS                     "+"
@@ -45,7 +44,6 @@ CODIGO                  "codigo:"
 
 {FIN_LINEA}             return FIN_LINEA;
 {VAR_NUMERO}            return VAR_NUMERO;
-{VAR_CHAR}              return VAR_CHAR;
 {VAR_STRING}            return VAR_STRING;
 {CONST}                 return CONST;
 {MAS}                   return MAS;

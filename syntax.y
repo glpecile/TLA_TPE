@@ -14,7 +14,6 @@ list *l;
 
 %token FIN_LINEA
 %token VAR_NUMERO
-%token VAR_CHAR
 %token VAR_STRING
 %token CONST
 %token MAS
