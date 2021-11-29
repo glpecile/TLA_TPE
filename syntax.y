@@ -166,7 +166,7 @@ super_si_sino: si_st sentencia_booleana entonces rutina si_no_st rutina fin_si;
 
 si_st: SI {printf("if(");};
 
-entonces: PARENTESIS_CIERRA {printf(") {");};
+entonces: PARENTESIS_CIERRA LLAVE_ABRE {printf(") {");};
 
 fin_si: LLAVE_CIERRA {printf("}");};
 
