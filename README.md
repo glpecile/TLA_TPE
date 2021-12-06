@@ -69,3 +69,13 @@ La limpieza de los archivos generados se realiza con el siguiente comando:
 ```bash
 make clean_test
 ```
+
+# Correciones
+
+* Informe: El informe está correcto y están bien expresadas las ideas del trabajo.
+* Implementación: El programa les quedó un "homomorfismo" con C.  Si se fijan en el .y prácticamente para cada acción semántica están imprimiendo por salida una traducción directa a C.  Este es el riesgo de ir por el lado de generar un lenguaje de alto nivel como salida, que se hace difícil alejarse de la propia gramática del lenguaje target.  Adecuada la implementación de la tabla de símbolos.
+* Cumplimiento:  Cumplieron con todos los objetivos planteados en el TPE.
+* Calidad:  La calidad es buena.  El compilador compila muy bien, y se pueden ejecutar todos los tests que armaron.
+* +Alpha:  Este punto me constó encontrar qué es exactamente lo distintivo o extra.  No me queda clara la idea en los códigos .ar de "contratos" con pre-clausulas, ejecución y postalidaciones.  Por ahí podían haber explotado más esa idea.
+
+El trabajo está aprobado y la nota es un **7 (siete)**.
